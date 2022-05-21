@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+<script>
+  $(document).ready( function () {
+      $('#table_id').DataTable();
+  } );
+  </script>
+
+
+{% block body %}
+<h3>Dashboard</h3>
+<br>
+<h5>Welcome ,{{session["username"]}}</h5>
+<a  type="button"  class ="btn btn-md btn-info float-right" href="/register">Add Users</a> 
+
+{% from "includes/formhelpers.html" import render_field %}
+                  
+            <table id="table_id"   class="table table-hover table-striped table-bordered content-container">
+              <thead >
+                  <th><i class="fa fa-reorder"></i></th>
+                  <th>#id</th>                  
+                  <th class="w50">#Image</th>
+                  <th>Username</th>
+                  <th>Name</th>
+                  <th>E-Mail</th>
+                  <th>Create Date</th>
+                  <th>Last Update Date</th>
+                  <th>Total Login Count</th>
+              </thead>
+              <tbody >
+
+    {% for user in user  %}
+      <tr class="ord">
+          <td class="order"><i class="fa fa-reorder"></i></td>
+          <td class="w50 text-center">#{{user.id}}</td>
+          <td class="w50 text-center"> 
+            <img style="width:100%;" src="static/images/{{user.img_url}}" alt="">
+           </td>
+          <td class="text-center">{{user.username}}</td>            
+          <td class="text-center">{{user.name}}</td>
+          <td class="text-center">{{user.email}}</td>
+          <td class="text-center">{{user.createdAt}}</td>
+          <td class="text-center">{{user.updatedAt}}</td>
+          <td class="text-center">{{user.count}}</td>
+      </tr>
+{% endfor %}
+
+</tbody>
+
+</table>
+
+{% endblock body %}
+

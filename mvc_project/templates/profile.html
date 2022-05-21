@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block body %}
+{% from "includes/formhelpers.html" import render_field %}
+
+
+
+<h3>Edit Profile </h3>
+<hr>
+<form method = "post">
+    {{ render_field(form.name,class = "form-control",value = session["profilename"]) }}
+    {{ render_field(form.username,class = "form-control",value = session["profileusername"]) }}
+    {{ render_field(form.email,class = "form-control",value = session["profileemail"]) }}
+    {{ render_field(form.password,class = "form-control") }}
+    {{ render_field(form.confirm,class = "form-control") }}
+    {{ render_field(form.isAdmin,class = "form-control",value = session["profileisAdmin"]) }}
+    <button type="submit" class="btn btn-success float-right">Update Profile</button>
+</form>
+<form method="post" action="/uploadimage/58/users"  enctype="multipart/form-data">
+    <input class="btn btn-md btn-info"  type="file" name="file1">
+    <button type="submit" class="btn btn-md btn-info">Upload</button>
+</form>
+{% endblock body %}
